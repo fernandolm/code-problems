@@ -10,7 +10,7 @@ import java.text.MessageFormat;
 import java.util.*;
 
 public class RemoveDuplicatesFromSortedArray implements Test {
-    private Map<int[], int[]> testCases = new HashMap<int[], int[]>() {{
+    private final Map<int[], int[]> testCases = new HashMap<>() {{
         put(new int[]{1,1,2}, new int[]{1,2});
         put(new int[]{0,0,1,1,1,2,2,3,3,4}, new int[]{0,1,2,3,4});
     }};
@@ -27,7 +27,7 @@ public class RemoveDuplicatesFromSortedArray implements Test {
             Printer.print(String.valueOf(counter++));
             removeDuplicates(sentence.getKey(), sentence.getValue(), result);
             results.add(result.getValue());
-        };
+        }
 
         Printer.printSuccess(results);
         Printer.printFail(results);

@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 
 public class WordCounter implements Test {
-    private Map<String, Integer> testCases = new HashMap<String, Integer>() {{
+    private final Map<String, Integer> testCases = new HashMap<>() {{
         put("We test coders. Give us a try?", 4);
         put("Forget  CVs..Save time . x x", 2);
         put(".", 0);
@@ -36,7 +36,7 @@ public class WordCounter implements Test {
             Printer.print(String.valueOf(counter++));
             countWords(sentence.getKey(), sentence.getValue(), result);
             results.add(result.getValue());
-        };
+        }
 
         Printer.printSuccess(results);
         Printer.printFail(results);
@@ -48,10 +48,10 @@ public class WordCounter implements Test {
 
         long highestTotalWordsPhrase = 0;
         String highestPhrase = "";
-        String phrase = "";
+        String phrase;
 
         for (int initialSearchPosition = 0; initialSearchPosition < sentence.length(); ) {
-            int punctuationPosition = initialSearchPosition;
+            int punctuationPosition;
             int lowestPunctuationPosition = sentence.length();
 
             for (String punctuation : punctuations) {
@@ -62,13 +62,13 @@ public class WordCounter implements Test {
                 }
             }
 
-            long totalWordsPhrase = 0;
+            long totalWordsPhrase;
 
             phrase = sentence.substring(initialSearchPosition, lowestPunctuationPosition);
             initialSearchPosition += lowestPunctuationPosition + 1;
 
             var words = Arrays.asList(phrase.split(" "));
-            totalWordsPhrase = words.stream().filter(w -> StringUtils.isNotBlank(w)).count();
+            totalWordsPhrase = words.stream().filter(StringUtils::isNotBlank).count();
 
             if(totalWordsPhrase > highestTotalWordsPhrase) {
                 highestTotalWordsPhrase = totalWordsPhrase;

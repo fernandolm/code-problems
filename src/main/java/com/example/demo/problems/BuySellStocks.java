@@ -9,7 +9,7 @@ import java.text.MessageFormat;
 import java.util.*;
 
 public class BuySellStocks implements Test {
-    private Map<int[], Integer> testCases = new HashMap<int[], Integer>() {{
+    private final Map<int[], Integer> testCases = new HashMap<>() {{
         put(new int[]{1}, 0);
         put(new int[]{1,2}, 1);
         put(new int[]{1,2,3}, 2);
@@ -31,7 +31,7 @@ public class BuySellStocks implements Test {
             Printer.print(String.valueOf(counter++));
             maxProfit(sentence.getKey(), sentence.getValue(), result);
             results.add(result.getValue());
-        };
+        }
 
         Printer.printSuccess(results);
         Printer.printFail(results);
@@ -55,7 +55,7 @@ public class BuySellStocks implements Test {
                     break;
                 }
 
-                if(buy != NO_VALUE && sell == NO_VALUE && prices[counter] > prices[counter2]) {
+                if(buy != NO_VALUE && prices[counter] > prices[counter2]) {
                     sell = prices[counter];
                     break;
                 }
@@ -68,7 +68,7 @@ public class BuySellStocks implements Test {
             }
         }
 
-        if(buy != NO_VALUE && sell == NO_VALUE){
+        if(buy != NO_VALUE){
             profit += prices[prices.length-1] - buy;
         }
 
