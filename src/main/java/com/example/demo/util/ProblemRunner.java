@@ -15,6 +15,6 @@ public class ProblemRunner {
 
         Method methodTest = problemClass.getMethod(TEST_METHOD_NAME, null);
         Constructor<?> constructor = problemClass.getDeclaredConstructor();
-        methodTest.invoke(constructor.newInstance(), (Object) null);
+        methodTest.invoke(constructor.newInstance(), null);
     }
 }

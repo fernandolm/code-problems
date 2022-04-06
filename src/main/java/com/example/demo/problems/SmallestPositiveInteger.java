@@ -65,7 +65,7 @@ public class SmallestPositiveInteger implements Test {
     }
 
     private Integer getSmallestPositiveInteger(int[] numbers, Integer answer, MutableBoolean result){
-        Printer.print(MessageFormat.format("Numbers to be tested: [{0}] | Answer: [{1}]", Arrays.toString(numbers), answer));
+        Printer.print(MessageFormat.format("Numbers to be tested: [{0}] | Answer: {1}", Arrays.toString(numbers), answer));
 
         Integer smallestPositiveInteger;
 
@@ -80,8 +80,9 @@ public class SmallestPositiveInteger implements Test {
             if(MAX <= 0){
                 smallestPositiveInteger = MAX + 1 != 0 ? MAX + 1 : 1;
             }
-
-            smallestPositiveInteger = MAX + 1;
+            else {
+                smallestPositiveInteger = MAX + 1;
+            }
         }
 
         final boolean IS_TEST_OK = smallestPositiveInteger == answer;
