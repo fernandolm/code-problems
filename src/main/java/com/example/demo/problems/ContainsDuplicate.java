@@ -3,18 +3,27 @@ package com.example.demo.problems;
 
 import com.example.demo.interfaces.Test;
 import com.example.demo.util.Printer;
+import com.example.demo.util.ProblemRunner;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 
+import java.lang.invoke.MethodHandles;
+import java.lang.reflect.InvocationTargetException;
 import java.text.MessageFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class ContainsDuplicate implements Test {
+    private static final String FULL_CLASS_NAME = MethodHandles.lookup().lookupClass().getName();
+
     private final Map<int[], Boolean> testCases = new HashMap<>() {{
         put(new int[]{1,2,3,1}, true);
         put(new int[]{1,2,3,4}, false);
         put(new int[]{1,1,1,3,3,4,3,2,4,2}, true);
     }};
+
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        ProblemRunner.run(FULL_CLASS_NAME);
+    }
 
     @Override
     public void test() {

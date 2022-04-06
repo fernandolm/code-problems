@@ -3,12 +3,17 @@ package com.example.demo.problems;
 
 import com.example.demo.interfaces.Test;
 import com.example.demo.util.Printer;
+import com.example.demo.util.ProblemRunner;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 
+import java.lang.invoke.MethodHandles;
+import java.lang.reflect.InvocationTargetException;
 import java.text.MessageFormat;
 import java.util.*;
 
 public class BuySellStocks implements Test {
+    private static final String FULL_CLASS_NAME = MethodHandles.lookup().lookupClass().getName();
+
     private final Map<int[], Integer> testCases = new HashMap<>() {{
         put(new int[]{1}, 0);
         put(new int[]{1,2}, 1);
@@ -18,6 +23,9 @@ public class BuySellStocks implements Test {
         put(new int[]{7,6,4,3,1}, 0);
     }};
 
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        ProblemRunner.run(FULL_CLASS_NAME);
+    }
 
     @Override
     public void test() {

@@ -3,17 +3,26 @@ package com.example.demo.problems;
 
 import com.example.demo.interfaces.Test;
 import com.example.demo.util.Printer;
+import com.example.demo.util.ProblemRunner;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 
+import java.lang.invoke.MethodHandles;
+import java.lang.reflect.InvocationTargetException;
 import java.text.MessageFormat;
 import java.util.*;
 
 public class RemoveDuplicatesFromSortedArray implements Test {
+    private static final String FULL_CLASS_NAME = MethodHandles.lookup().lookupClass().getName();
+
     private final Map<int[], int[]> testCases = new HashMap<>() {{
         put(new int[]{1,1,2}, new int[]{1,2});
         put(new int[]{0,0,1,1,1,2,2,3,3,4}, new int[]{0,1,2,3,4});
     }};
+
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        ProblemRunner.run(FULL_CLASS_NAME);
+    }
 
     @Override
     public void test() {

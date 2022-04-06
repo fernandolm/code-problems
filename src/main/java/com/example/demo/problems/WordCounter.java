@@ -3,13 +3,18 @@ package com.example.demo.problems;
 import com.example.demo.interfaces.Test;
 import com.example.demo.util.Printer;
 
+import java.lang.invoke.MethodHandles;
+import java.lang.reflect.InvocationTargetException;
 import java.text.MessageFormat;
 import java.util.*;
 
+import com.example.demo.util.ProblemRunner;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 
 public class WordCounter implements Test {
+    private static final String FULL_CLASS_NAME = MethodHandles.lookup().lookupClass().getName();
+
     private final Map<String, Integer> testCases = new HashMap<>() {{
         put("We test coders. Give us a try?", 4);
         put("Forget  CVs..Save time . x x", 2);
@@ -23,6 +28,10 @@ public class WordCounter implements Test {
     }};
 
     private final List<String> punctuations = new ArrayList<>() {{ add("."); add("?"); add("!"); }};
+
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        ProblemRunner.run(FULL_CLASS_NAME);
+    }
 
     @Override
     public void test(){
