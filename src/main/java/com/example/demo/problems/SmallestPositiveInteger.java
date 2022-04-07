@@ -53,9 +53,9 @@ public class SmallestPositiveInteger implements Test {
         MutableBoolean result = new MutableBoolean();
         List<Boolean> results = new ArrayList<>();
 
-        for (var sentence : testCases.entrySet()) {
+        for (var testCase : testCases.entrySet()) {
             Printer.print(String.valueOf(counter++));
-            getSmallestPositiveInteger(sentence.getKey(), sentence.getValue(), result);
+            getSmallestPositiveInteger(testCase.getKey(), testCase.getValue(), result);
             results.add(result.getValue());
         }
 

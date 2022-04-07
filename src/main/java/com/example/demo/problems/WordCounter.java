@@ -41,9 +41,9 @@ public class WordCounter implements Test {
         MutableBoolean result = new MutableBoolean();
         List<Boolean> results = new ArrayList<>();
 
-        for (Map.Entry<String, Integer> sentence : testCases.entrySet()) {
+        for (Map.Entry<String, Integer> testCase : testCases.entrySet()) {
             Printer.print(String.valueOf(counter++));
-            countWords(sentence.getKey(), sentence.getValue(), result);
+            countWords(testCase.getKey(), testCase.getValue(), result);
             results.add(result.getValue());
         }
 
@@ -85,12 +85,14 @@ public class WordCounter implements Test {
             }
         }
 
+        final boolean IS_TEST_OK = highestTotalWordsPhrase == answerTotalWords;
+
         Printer.print(MessageFormat.format("Answer: Phrase with more words: {0} | Total Words: {1} | {2}",
                 highestPhrase,
                 highestTotalWordsPhrase,
-                (highestTotalWordsPhrase == answerTotalWords)));
+                IS_TEST_OK));
 
-        result.setValue(highestTotalWordsPhrase == answerTotalWords);
+        result.setValue(IS_TEST_OK);
 
         return highestTotalWordsPhrase;
     }

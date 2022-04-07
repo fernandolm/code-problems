@@ -32,10 +32,10 @@ public class SingleNumber implements Test {
         MutableBoolean result = new MutableBoolean();
         List<Boolean> results = new ArrayList<>();
 
-        for (var sentence : testCases.entrySet()) {
+        for (var testCase : testCases.entrySet()) {
             Printer.print(String.valueOf(counter++));
-            singleNumber(sentence.getKey(),
-                    sentence.getValue(),
+            singleNumber(testCase.getKey(),
+                    testCase.getValue(),
                     result);
             results.add(result.getValue());
         }
@@ -58,8 +58,13 @@ public class SingleNumber implements Test {
             }
         }
 
-        Printer.print(MessageFormat.format("Single Number found: {0} | {1}", singleNumber, (singleNumber == answer)));
-        result.setValue(singleNumber == answer);
+        final boolean IS_TEST_OK = singleNumber == answer;
+
+        Printer.print(MessageFormat.format("Single Number found: {0} | {1}",
+                singleNumber,
+                IS_TEST_OK));
+
+        result.setValue(IS_TEST_OK);
 
         return singleNumber;
     }

@@ -33,10 +33,10 @@ public class ContainsDuplicate implements Test {
         MutableBoolean result = new MutableBoolean();
         List<Boolean> results = new ArrayList<>();
 
-        for (var sentence : testCases.entrySet()) {
+        for (var testCase : testCases.entrySet()) {
             Printer.print(String.valueOf(counter++));
-            containsDuplicate(sentence.getKey(),
-                    sentence.getValue(),
+            containsDuplicate(testCase.getKey(),
+                    testCase.getValue(),
                     result);
             results.add(result.getValue());
         }
@@ -54,8 +54,13 @@ public class ContainsDuplicate implements Test {
         var numbers = Arrays.stream(nums).boxed().collect(Collectors.toList());
         containsDuplicatedValues = numbers.stream().distinct().count() != nums.length;
 
-        Printer.print(MessageFormat.format("Result after passing through the method: {0}", containsDuplicatedValues));
-        result.setValue(containsDuplicatedValues == answer);
+        final boolean IS_TEST_OK = containsDuplicatedValues == answer;
+
+        Printer.print(MessageFormat.format("Result after passing through the method: {0} | {1}",
+                containsDuplicatedValues,
+                IS_TEST_OK));
+
+        result.setValue(IS_TEST_OK);
 
         return containsDuplicatedValues;
     }

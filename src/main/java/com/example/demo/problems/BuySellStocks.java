@@ -35,9 +35,9 @@ public class BuySellStocks implements Test {
         MutableBoolean result = new MutableBoolean();
         List<Boolean> results = new ArrayList<>();
 
-        for (var sentence : testCases.entrySet()) {
+        for (var testCase : testCases.entrySet()) {
             Printer.print(String.valueOf(counter++));
-            maxProfit(sentence.getKey(), sentence.getValue(), result);
+            maxProfit(testCase.getKey(), testCase.getValue(), result);
             results.add(result.getValue());
         }
 
@@ -80,8 +80,11 @@ public class BuySellStocks implements Test {
             profit += prices[prices.length-1] - buy;
         }
 
-        Printer.print(MessageFormat.format("Answer: Profit: {0} | {1}", profit, (profit == answerProfit)));
-        result.setValue(profit == answerProfit);
+        final boolean IS_TEST_OK = profit == answerProfit;
+
+        Printer.print(MessageFormat.format("Answer: Profit: {0} | {1}", profit, IS_TEST_OK));
+
+        result.setValue(IS_TEST_OK);
 
         return profit;
     }

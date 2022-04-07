@@ -31,10 +31,10 @@ public class RotateArray implements Test {
         MutableBoolean result = new MutableBoolean();
         List<Boolean> results = new ArrayList<>();
 
-        for (var sentence : testCases.entrySet()) {
+        for (var testCase : testCases.entrySet()) {
             Printer.print(String.valueOf(counter++));
-            Map.Entry<Integer, int[]> rotateNumberAndAnswer = sentence.getValue();
-            rotateArray(sentence.getKey(),
+            Map.Entry<Integer, int[]> rotateNumberAndAnswer = testCase.getValue();
+            rotateArray(testCase.getKey(),
                     rotateNumberAndAnswer.getKey(),
                     rotateNumberAndAnswer.getValue(),
                     result);
@@ -59,8 +59,10 @@ public class RotateArray implements Test {
             rotatedArray[counter] = nums[Math.abs(numberOfRotations - counter)];
         }
 
-        Printer.print(MessageFormat.format("Rotated Array: {0} | {1}", Arrays.toString(rotatedArray), (Arrays.toString(rotatedArray).equals(Arrays.toString(answerArray)))));
+        final boolean IS_TEST_OK = Arrays.toString(rotatedArray).equals(Arrays.toString(answerArray));
 
-        result.setValue((Arrays.toString(rotatedArray).equals(Arrays.toString(answerArray))));
+        Printer.print(MessageFormat.format("Rotated Array: {0} | {1}", Arrays.toString(rotatedArray), IS_TEST_OK));
+
+        result.setValue(IS_TEST_OK);
     }
 }

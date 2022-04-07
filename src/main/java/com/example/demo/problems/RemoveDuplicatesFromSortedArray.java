@@ -32,9 +32,9 @@ public class RemoveDuplicatesFromSortedArray implements Test {
         MutableBoolean result = new MutableBoolean();
         List<Boolean> results = new ArrayList<>();
 
-        for (var sentence : testCases.entrySet()) {
+        for (var testCase : testCases.entrySet()) {
             Printer.print(String.valueOf(counter++));
-            removeDuplicates(sentence.getKey(), sentence.getValue(), result);
+            removeDuplicates(testCase.getKey(), testCase.getValue(), result);
             results.add(result.getValue());
         }
 
@@ -66,10 +66,16 @@ public class RemoveDuplicatesFromSortedArray implements Test {
             distinctArray[counterDistinctArray++] = number;
         }
 
-        Printer.print(MessageFormat.format("Answer Array: {0} | {1}", Arrays.toString(distinctArray), (Arrays.toString(distinctArray).equals(Arrays.toString(answerArray)))));
-        Printer.print(MessageFormat.format("Answer Count: {0} | {1}", distinctArray.length, (distinctArray.length == answerArray.length)));
+        final boolean IS_TEST_OK = distinctArray.length == answerArray.length && (Arrays.toString(distinctArray).equals(Arrays.toString(answerArray)));
 
-        result.setValue(distinctArray.length == answerArray.length && (Arrays.toString(distinctArray).equals(Arrays.toString(answerArray))));
+        Printer.print(MessageFormat.format("Answer Array: {0} | {1}",
+                Arrays.toString(distinctArray),
+                (Arrays.toString(distinctArray).equals(Arrays.toString(answerArray)))));
+        Printer.print(MessageFormat.format("Answer Count: {0} | {1}",
+                distinctArray.length,
+                (distinctArray.length == answerArray.length)));
+
+        result.setValue(IS_TEST_OK);
 
         return distinctArray.length;
     }
