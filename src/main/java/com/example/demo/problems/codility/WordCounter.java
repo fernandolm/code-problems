@@ -1,4 +1,4 @@
-package com.example.demo.problems;
+package com.example.demo.problems.codility;
 
 import com.example.demo.interfaces.Test;
 import com.example.demo.util.Printer;
@@ -15,7 +15,7 @@ import org.apache.commons.lang3.mutable.MutableBoolean;
 public class WordCounter implements Test {
     private static final String FULL_CLASS_NAME = MethodHandles.lookup().lookupClass().getName();
 
-    private final Map<String, Integer> testCases = new HashMap<>() {{
+    private final Map<String, Integer> testCases = new HashMap() {{
         put("We test coders. Give us a try?", 4);
         put("Forget  CVs..Save time . x x", 2);
         put(".", 0);
@@ -27,7 +27,7 @@ public class WordCounter implements Test {
         put("   .    ?     t e s t e     !        .      ! !        ", 5);
     }};
 
-    private final List<String> punctuations = new ArrayList<>() {{ add("."); add("?"); add("!"); }};
+    private final List<String> punctuations = new ArrayList() {{ add("."); add("?"); add("!"); }};
 
     public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         ProblemRunner.run(FULL_CLASS_NAME);
@@ -39,7 +39,7 @@ public class WordCounter implements Test {
 
         int counter = 1;
         MutableBoolean result = new MutableBoolean();
-        List<Boolean> results = new ArrayList<>();
+        List<Boolean> results = new ArrayList();
 
         for (Map.Entry<String, Integer> testCase : testCases.entrySet()) {
             Printer.print(String.valueOf(counter++));
@@ -76,7 +76,7 @@ public class WordCounter implements Test {
             phrase = sentence.substring(initialSearchPosition, lowestPunctuationPosition);
             initialSearchPosition += lowestPunctuationPosition + 1;
 
-            var words = Arrays.asList(phrase.split(" "));
+            List<String> words = Arrays.asList(phrase.split(" "));
             totalWordsPhrase = words.stream().filter(StringUtils::isNotBlank).count();
 
             if(totalWordsPhrase > highestTotalWordsPhrase) {

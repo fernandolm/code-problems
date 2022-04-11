@@ -27,9 +27,9 @@ public class DemoApplication implements CommandLineRunner {
 		Set<Class<? extends Test>> allClasses = reflections.getSubTypesOf(Test.class);
 
 		for (Class problemClass : allClasses) {
-			Method methodTest = problemClass.getMethod(TEST_METHOD_NAME, null);
+			Method testMethod = problemClass.getDeclaredMethod(TEST_METHOD_NAME, null);
 			Constructor<?> constructor = problemClass.getDeclaredConstructor();
-			methodTest.invoke(constructor.newInstance(), null);
+			testMethod.invoke(constructor.newInstance(), null);
 		}
 	}
 }

@@ -1,6 +1,7 @@
 package com.example.demo.util;
 
 import lombok.experimental.UtilityClass;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.StopWatch;
 
 import java.math.BigDecimal;
@@ -11,8 +12,9 @@ import java.util.stream.Collectors;
 
 @UtilityClass
 public class Printer {
-    private final String SEPARATOR = "-";
+    private final String SEPARATOR_CHARACTER = "-";
     private final int SEPARATOR_NUMBER_OF_REPETITION = 80;
+    private final String SEPARATOR = StringUtils.repeat(SEPARATOR_CHARACTER, SEPARATOR_NUMBER_OF_REPETITION);
 
     private StopWatch stopWatch;
 
@@ -27,15 +29,16 @@ public class Printer {
         stopWatch.start();
 
         print("\n");
-        print(SEPARATOR.repeat(SEPARATOR_NUMBER_OF_REPETITION));
+        print(SEPARATOR);
         print("BEGIN >>>>> " + testName);
     }
 
     public void printEnd(String testName) {
         stopWatch.stop();
+        stopWatch.prettyPrint();
 
         print(MessageFormat.format("END >>>>> {0} | {1} miliseconds", testName, stopWatch.getTotalTimeMillis()));
-        print(SEPARATOR.repeat(SEPARATOR_NUMBER_OF_REPETITION));
+        print(SEPARATOR);
     }
 
     public void print(String message) {

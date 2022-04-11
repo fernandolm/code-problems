@@ -1,5 +1,5 @@
 //https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/646/
-package com.example.demo.problems;
+package com.example.demo.problems.leetcode;
 
 import com.example.demo.interfaces.Test;
 import com.example.demo.util.Printer;
@@ -14,7 +14,7 @@ import java.util.*;
 public class RotateArray implements Test {
     private static final String FULL_CLASS_NAME = MethodHandles.lookup().lookupClass().getName();
 
-    private final Map<int[], Map.Entry<Integer, int[]>> testCases = new HashMap<>() {{
+    private final Map<int[], Map.Entry<Integer, int[]>> testCases = new HashMap() {{
         put(new int[]{1,2,3,4,5,6,7}, new SimpleEntry(3, new int[]{5,6,7,1,2,3,4}));
         put(new int[]{-1,-100,3,99}, new SimpleEntry(2, new int[]{3,99,-1,-100}));
     }};
@@ -29,9 +29,9 @@ public class RotateArray implements Test {
 
         int counter = 1;
         MutableBoolean result = new MutableBoolean();
-        List<Boolean> results = new ArrayList<>();
+        List<Boolean> results = new ArrayList();
 
-        for (var testCase : testCases.entrySet()) {
+        for (Map.Entry<int[], Map.Entry<Integer, int[]>> testCase : testCases.entrySet()) {
             Printer.print(String.valueOf(counter++));
             Map.Entry<Integer, int[]> rotateNumberAndAnswer = testCase.getValue();
             rotateArray(testCase.getKey(),

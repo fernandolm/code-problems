@@ -1,5 +1,5 @@
 //https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/549/
-package com.example.demo.problems;
+package com.example.demo.problems.leetcode;
 
 import com.example.demo.interfaces.Test;
 import com.example.demo.util.Printer;
@@ -14,7 +14,7 @@ import java.util.*;
 public class SingleNumber implements Test {
     private static final String FULL_CLASS_NAME = MethodHandles.lookup().lookupClass().getName();
 
-    private final Map<int[], Integer> testCases = new HashMap<>() {{
+    private final Map<int[], Integer> testCases = new HashMap() {{
         put(new int[]{2,2,1}, 1);
         put(new int[]{4,1,2,1,2}, 4);
         put(new int[]{1}, 1);
@@ -30,9 +30,9 @@ public class SingleNumber implements Test {
 
         int counter = 1;
         MutableBoolean result = new MutableBoolean();
-        List<Boolean> results = new ArrayList<>();
+        List<Boolean> results = new ArrayList();
 
-        for (var testCase : testCases.entrySet()) {
+        for (Map.Entry<int[], Integer> testCase : testCases.entrySet()) {
             Printer.print(String.valueOf(counter++));
             singleNumber(testCase.getKey(),
                     testCase.getValue(),

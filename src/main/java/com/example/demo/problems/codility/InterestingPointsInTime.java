@@ -1,4 +1,4 @@
-package com.example.demo.problems;
+package com.example.demo.problems.codility;
 
 import com.example.demo.interfaces.Test;
 import com.example.demo.util.Printer;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class InterestingPointsInTime implements Test {
     private static final String FULL_CLASS_NAME = MethodHandles.lookup().lookupClass().getName();
 
-    private final Map<Map.Entry<String, String>, Integer> testCases = new HashMap<>() {{
+    private final Map<Map.Entry<String, String>, Integer> testCases = new HashMap() {{
         put(new SimpleEntry("14:15:00", "14:15:00"), 0);
         put(new SimpleEntry("14:15:00", "13:15:00"), 0);
         put(new SimpleEntry("22:22:22", "22:22:23"), 2);
@@ -42,9 +42,9 @@ public class InterestingPointsInTime implements Test {
 
         int counter = 1;
         MutableBoolean result = new MutableBoolean();
-        List<Boolean> results = new ArrayList<>();
+        List<Boolean> results = new ArrayList();
 
-        for (var testCase : testCases.entrySet()) {
+        for (Map.Entry<Map.Entry<String, String>, Integer> testCase : testCases.entrySet()) {
             Printer.print(String.valueOf(counter++));
 
             Map.Entry<String, String> timeRange = testCase.getKey();
