@@ -100,14 +100,14 @@ public class SoldProductsAggregator implements Test {
     private final Map<Stream<SoldProduct>, SoldProductsAggregate> testCases = new HashMap() {{
         put(Stream.empty(), new SoldProductsAggregate(new ArrayList(), BigDecimal.ZERO));
         put(null, new SoldProductsAggregate(new ArrayList(), BigDecimal.ZERO));
-        put(Stream.of(new SoldProduct(SOLD_PRODUCT_NAME, BigDecimal.ZERO, SOLD_PRODUCT_CURRENCY_EUR)), new SoldProductsAggregate(new ArrayList(), BigDecimal.ZERO));
-        put(Stream.of(new SoldProduct(SOLD_PRODUCT_NAME, BigDecimal.TEN, "")), new SoldProductsAggregate(new ArrayList(), BigDecimal.ZERO));
+        put(Stream.of(new SoldProduct(SOLD_PRODUCT_NAME, BigDecimal.ZERO, SOLD_PRODUCT_CURRENCY_EUR)), new SoldProductsAggregate(new ArrayList(){{ add(new SimpleSoldProduct(SOLD_PRODUCT_NAME, BigDecimal.ZERO)); }}, BigDecimal.ZERO));
+        put(Stream.of(new SoldProduct(SOLD_PRODUCT_NAME, BigDecimal.TEN, "")), new SoldProductsAggregate(new ArrayList(){{ add(new SimpleSoldProduct(SOLD_PRODUCT_NAME, BigDecimal.valueOf(50L))); }}, BigDecimal.valueOf(50L)));
         put(Stream.of(new SoldProduct(SOLD_PRODUCT_NAME, BigDecimal.TEN, null)), new SoldProductsAggregate(new ArrayList(), BigDecimal.ZERO));
         put(Stream.of(new SoldProduct(SOLD_PRODUCT_NAME, BigDecimal.TEN, " " + SOLD_PRODUCT_CURRENCY_EUR + " ")), new SoldProductsAggregate(new ArrayList(), BigDecimal.ZERO));
         put(Stream.of(new SoldProduct(SOLD_PRODUCT_NAME, BigDecimal.TEN, " " + SOLD_PRODUCT_CURRENCY_EUR)), new SoldProductsAggregate(new ArrayList(), BigDecimal.ZERO));
         put(Stream.of(new SoldProduct(SOLD_PRODUCT_NAME, BigDecimal.TEN, SOLD_PRODUCT_CURRENCY_EUR + " ")), new SoldProductsAggregate(new ArrayList(), BigDecimal.ZERO));
-        put(Stream.of(new SoldProduct(SOLD_PRODUCT_NAME, BigDecimal.ONE, SOLD_PRODUCT_CURRENCY_EUR)), new SoldProductsAggregate(new ArrayList(){{ add(new SimpleSoldProduct(SOLD_PRODUCT_NAME, BigDecimal.ONE)); }}, BigDecimal.valueOf(5L)));
-        put(Stream.of(new SoldProduct(SOLD_PRODUCT_NAME, BigDecimal.TEN, SOLD_PRODUCT_CURRENCY_EUR)), new SoldProductsAggregate(new ArrayList(){{ add(new SimpleSoldProduct(SOLD_PRODUCT_NAME, BigDecimal.TEN)); }}, BigDecimal.valueOf(50L)));
+        put(Stream.of(new SoldProduct(SOLD_PRODUCT_NAME, BigDecimal.ONE, SOLD_PRODUCT_CURRENCY_EUR)), new SoldProductsAggregate(new ArrayList(){{ add(new SimpleSoldProduct(SOLD_PRODUCT_NAME, BigDecimal.valueOf(5L))); }}, BigDecimal.valueOf(5L)));
+        put(Stream.of(new SoldProduct(SOLD_PRODUCT_NAME, BigDecimal.TEN, SOLD_PRODUCT_CURRENCY_EUR)), new SoldProductsAggregate(new ArrayList(){{ add(new SimpleSoldProduct(SOLD_PRODUCT_NAME, BigDecimal.valueOf(50L))); }}, BigDecimal.valueOf(50L)));
     }};
 
     private final EURExchangeService exchangeService = new EURExchangeService();
@@ -140,10 +140,6 @@ public class SoldProductsAggregator implements Test {
     }
 
     private SoldProductsAggregate aggregate(Stream<SoldProduct> products, SoldProductsAggregate answer, MutableBoolean result){
-//        Printer.print(MessageFormat.format("Products: {0} | Answer: {1}",
-//                products == null ? "null" : products.map(c -> c.getName()).collect(Collectors.joining("/")),
-//                answer));
-
         if(products == null) {
             products = Stream.empty();
         }
@@ -161,7 +157,8 @@ public class SoldProductsAggregator implements Test {
 
         final boolean IS_TEST_OK = soldProductsAggregate.equals(answer);
 
-        Printer.print(MessageFormat.format("SoldProductsAggregate: {0} | Answer: {1} | {2}",
+        Printer.print(MessageFormat.format("SoldProduct: {0} | SoldProductsAggregate: {1} | Answer: {2} | {3}",
+                soldProduct,
                 soldProductsAggregate,
                 answer,
                 IS_TEST_OK));
