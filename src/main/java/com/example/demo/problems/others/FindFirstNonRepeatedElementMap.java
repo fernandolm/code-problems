@@ -58,6 +58,18 @@ public class FindFirstNonRepeatedElementMap implements Test {
     private int findFirstNonRepeatedElementMap(String items, Integer answerIndex, MutableBoolean result) {
         Printer.print(MessageFormat.format("Items: {0} | Index: {1}", items, answerIndex));
 
+        if(items.equals(StringUtils.EMPTY))
+        {
+            printResults(-1, answerIndex, result);
+            return -1;
+        }
+
+        if(items.length() == 1)
+        {
+            printResults(0, answerIndex, result);
+            return 0;
+        }
+
         int index = -1;
 
         //source: https://stackoverflow.com/questions/39529831/how-to-find-first-repeated-and-non-repeated-character-in-a-string-using-java8
