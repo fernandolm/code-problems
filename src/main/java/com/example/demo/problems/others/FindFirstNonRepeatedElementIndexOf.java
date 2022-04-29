@@ -62,7 +62,7 @@ public class FindFirstNonRepeatedElementIndexOf implements Test {
 
         while(items.length() > 0) {
             char item = items.charAt(0);
-            int indexSearch = items.indexOf(item, (1 >= items.length() ? items.length() - 1 : 1));
+            int indexSearch = items.indexOf(item, (items.length() <= 1 ? 0 : 1));
 
             if(indexSearch == -1 || items.length() == 1) {
                 index = itemsCopy.indexOf(item);
